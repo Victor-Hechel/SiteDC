@@ -9,13 +9,27 @@ class Noticias extends CI_Model{
 		}
 	}
 
-	public function Listar(){
+	public function Listar($take = 0){
 		$this->db->select("id, titulo, TO_CHAR(datahorapublicacao, 'DD/MM/YYYY HH24:MI') AS 
 						   datahorapublicacao, TO_CHAR(datahoraatualizacao, 'DD/MM/YYYY HH24:MI') AS 
-						   datahoraatualizacao");
+						   datahoraatualizacao, descricao, foto");
+		$this->db->order_by("datahorapublicacao", "DESC");
+		if($take != 0){
+			$this->db->limit(3);
+		}
 		$this->db->from("noticias");
 		$query = $this->db->get(); 
 		return $query->result();
+	}
+
+	public function ListarFiltro($filtro){
+		$this->db->select("id, titulo, descricao, TO_CHAR(datahorapublicacao, 'DD/MM/YYYY HH24:MI') AS 
+						   datahorapublicacao");
+		$this->db->order_by("datahorapublicacao", "DESC");
+		$this->db->like("LOWER(titulo)", strtolower($filtro));
+		$this->db->or_like("descricao", $filtro);
+		$this->db->from("noticias");
+		return $this->db->get()->result();
 	}
 
 	public function Excluir($id){
@@ -29,7 +43,9 @@ class Noticias extends CI_Model{
 	}
 
 	public function getNoticia($id){
-		$this->db->select("noticias.id, noticias.titulo, noticias.descricao, noticias.foto");
+		$this->db->select("id, titulo, TO_CHAR(datahorapublicacao, 'DD/MM/YYYY HH24:MI') AS 
+						   datahorapublicacao, TO_CHAR(datahoraatualizacao, 'DD/MM/YYYY HH24:MI') AS 
+						   datahoraatualizacao, descricao, foto");
 		$this->db->where('id', $id);
 		return $this->db->get('noticias')->row();
 	}

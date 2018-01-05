@@ -5,22 +5,18 @@ class Projetos extends CI_Model{
 
 	public function Cadastrar($dados){
 		if ($dados != null) {
-			echo("<br>Dados<br>");
-			print_r($dados);
+
 			$infoBasica = $this->GetInfoBasicaFromArray($dados);
-			echo("<br>Info Basica<br>");
-			print_r($infoBasica);
+
 
 			$id = $this->CadastrarDadosBásicos($infoBasica);
 			
 			$infoBolsistas = $this->GetBolsistasFromArray($dados, $id);
-			echo("<br>Bolsistas<br>");
-			print_r($infoBolsistas);
+
 			$this->CadastrarBolsistas($infoBolsistas);
 
 			$infoEquipe = $this->GetEquipeFromArray($dados, $id);
-			echo("<br>Equipe<br>");
-			print_r($infoEquipe);
+
 			$this->CadastrarEquipe($infoEquipe);
 
 		}
@@ -63,11 +59,16 @@ class Projetos extends CI_Model{
 		$this->db->insert_batch('projeto_professor', $infoEquipe);
 	}
 
-	public function Listar(){
+	public function Listar($tipo = null, $filtro = ""){
 		$this->db->select("projetos.id, projetos.titulo, professores.nome, projetos.tipo");
 		$this->db->from("projetos");
 		$this->db->join("professores", "professores.siape = projetos.coordenador");
-		$query = $this->db->get(); 
+		if($tipo != null){
+			$this->db->where("tipo", $tipo);
+		}
+		$this->db->like("projetos.titulo", $filtro);
+		
+		$query = $this->db->get();
 		return $query->result();
 	}
 
@@ -108,7 +109,7 @@ class Projetos extends CI_Model{
 	}
 
 	public function getProjeto($id){
-		$this->db->select("projetos.id, projetos.titulo, professores.siape, projetos.tipo, 
+		$this->db->select("projetos.id, projetos.titulo, professores.*, projetos.tipo, 
 						   projetos.coordenador, projetos.descricao, projeto_bolsista.aluno,
 						   projeto_professor.idprofessor");
 		$this->db->from("projetos");
@@ -127,6 +128,10 @@ class Projetos extends CI_Model{
 
 			if(!in_array($value->aluno, $bolsistasArr)){
 				$bolsistasArr[] = $value->aluno;
+			}
+
+			if($value->coordenador == $value->siape){
+				$value->coordenador = $value->nome;
 			}
 		}
 		$data[0]->aluno = $bolsistasArr;

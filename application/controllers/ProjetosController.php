@@ -26,6 +26,21 @@ class ProjetosController extends MasterController {
 		$this->load->view('carregarTelas', $dados);
 	}
 
+	public function indexUser(){
+		$tipoProjeto = $this->uri->segment(2);
+
+		$dados = array(
+			'titulo' => 'Projetos',
+			'view' => 'index',
+			'controller' => 'Projetos',
+			'tipo' => 'User',
+			'tipoProjeto' => $tipoProjeto,
+			'dados' => $this->Projetos->Listar($tipoProjeto)
+		);
+
+		$this->load->view('carregarTelas', $dados);
+	}
+
 	public function Cadastrar(){
 		$this->form_validation->set_rules("titulo", "Título", "trim|required");
 		$this->form_validation->set_rules('coordenador', 'Coordenador', 'required');
@@ -87,7 +102,12 @@ class ProjetosController extends MasterController {
 	}
 
 	public function Listar(){
-		$projetos = $this->Projetos->Listar();
+
+		$tipo = $this->uri->segment(2);
+		$filtro = $this->uri->segment(3);
+
+		$projetos = $this->Projetos->Listar($tipo, $filtro);
+
 
 		foreach ($projetos as $value) {
 			switch ($value->tipo) {
@@ -109,6 +129,18 @@ class ProjetosController extends MasterController {
 	public function Excluir(){
 		$id = $this->uri->segment(4);
 		$this->Projetos->Excluir($id);
+	}
+
+	public function Detalhes(){
+		$id = $this->uri->segment(2);
+		$dados = array(
+			'titulo' => 'Projeto',
+			'view' => 'detalhes',
+			'controller' => 'Projetos',
+			'tipo' => 'User',
+			'dados' => $this->Projetos->getProjeto($id)
+		);
+		$this->load->view("carregarTelas", $dados);
 	}
 
 }

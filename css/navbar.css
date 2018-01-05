@@ -1,0 +1,10 @@
+.navbar {
+	border-radius: 0px;
+	margin:0;
+}
+nav{
+	background-color: blue;
+}
+nav a{
+	color: white;
+}

@@ -43,7 +43,7 @@ class Professores extends CI_Model{
 	}
 
 	public function ListarAtivos(){
-		$this->db->select("professores.siape, professores.nome");
+		$this->db->select("*");
 		$this->db->where("ativo", "t");
 		$this->db->from("professores");
 		return $this->db->get()->result();

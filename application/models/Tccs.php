@@ -2,8 +2,21 @@
 
 class Tccs extends CI_Model{
 
-	public function Listar(){
-		$this->db->order_by('ano', 'DESC');
+	public function Listar($curso = null, $filtro = null){
+		$this->db->select("tccs.*, professores.nome AS orientador");
+		$this->db->join("professores", "professores.siape = tccs.professorid");
+		if ($curso != null) {
+			$this->db->where("tccs.curso", $curso);
+		}
+
+		if($filtro != null){
+			$this->db->like("LOWER(tccs.titulo)", strtolower($filtro));
+			$this->db->or_like("LOWER(professores.nome)", strtolower($filtro));
+			$this->db->or_like("LOWER(tccs.palavraschave)", strtolower($filtro));
+			$this->db->or_like("LOWER(tccs.autor)", strtolower($filtro));
+		}
+
+		$this->db->order_by('tccs.ano', 'DESC');
 		$this->db->from('tccs');
 		return $this->db->get()->result();
 	}

@@ -27,6 +27,18 @@ class ProfessoresController extends MasterController {
 
 	}
 
+	public function indexUser(){
+		$dados = array(
+			'titulo' => 'Professores',
+			'view' => 'index',
+			'controller' => 'Professores',
+			'tipo' => 'User',
+			'dados' => $this->Professores->ListarAtivos()
+		);
+
+		$this->load->view('carregarTelas', $dados);
+	}
+
 	public function AtualizarInfo(){
 
 		$this->form_validation->set_rules('siape', 'Siape', "trim|required");
@@ -156,9 +168,6 @@ class ProfessoresController extends MasterController {
 	public function AlterarAtivo(){
 		$id = $this->uri->segment(4);
 		$value = $this->uri->segment(5);
-		echo $id;
-		echo "<br>";
-		echo $value;
 		$this->Professores->AlterarAtivo($id, $value);
 	}
 }

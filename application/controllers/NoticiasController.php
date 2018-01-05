@@ -17,6 +17,11 @@ class NoticiasController extends MasterController {
 		echo json_encode($this->Noticias->Listar());
 	}
 
+	public function ListarNoticiasFiltro(){
+		$filtro = $this->uri->segment(2);
+		echo json_encode($this->Noticias->ListarFiltro($filtro));
+	}
+
 
 	public function indexAdmin(){
 
@@ -28,6 +33,34 @@ class NoticiasController extends MasterController {
 		);
 		$this->load->view('carregarTelas', $dados);
 
+	}
+
+	public function indexUser(){
+
+		$dados = array(
+			'titulo' => 'Notícias',
+			'view' => 'index',
+			'controller' => 'Noticias',
+			'tipo' => 'User',
+			'dados' => $this->Noticias->Listar(10)
+		);
+
+		$this->load->view('carregarTelas', $dados);
+	}
+
+	public function Detalhes(){
+		$id = $this->uri->segment(2);
+
+		$dados = array(
+			'titulo' => "Notícia",
+			'view' => 'detalhes',
+			'controller' => 'Noticias',
+			'tipo' => 'User',
+			'dados' => $this->Noticias->getNoticia($id)
+		);
+
+
+		$this->load->view('carregarTelas', $dados);
 	}
 
 	public function AtualizarInfo(){
@@ -117,24 +150,6 @@ class NoticiasController extends MasterController {
 
 		if ($id !== NULL) {
 			$this->Noticias->Excluir($id);
-		}
-	}
-
-	public function Detalhes(){
-		$id = $this->uri->segment(4);
-
-		if ($id !== NULL) {
-			$noticia = $this->Noticias->getNoticia($id);
-
-			$dados = array(
-				'titulo' => 'Cadastrar Notícia',
-				'view' => 'Detalhes',
-				'controller' => 'Noticias',
-				'tipo' => 'Admin',
-				'dados' => $noticia
-			);
-
-			$this->load->view('carregarTelas', $dados);
 		}
 	}
 }

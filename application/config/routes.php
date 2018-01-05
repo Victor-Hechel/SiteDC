@@ -48,3 +48,21 @@ $route['(?i)admin/Projetos/Excluir/(:any)'] = '/ProjetosController/Excluir';
 
 $route['(?i)admin/Projetos/Listar'] = '/ProjetosController/Listar';
 $route['(?i)admin/Projetos/editar/(:any)'] = '/ProjetosController/Cadastrar';
+
+
+
+$route['(?i)Noticias'] = '/NoticiasController/indexUser';
+$route['NoticiasFiltro/(:any)'] = '/NoticiasController/ListarNoticiasFiltro';
+$route['NoticiasFiltro'] = '/NoticiasController/ListarNoticiasFiltro';
+$route['Noticia/(:any)'] = '/NoticiasController/Detalhes';
+
+
+$route['Professores'] = '/ProfessoresController/indexUser';
+
+$route['Cursos/(:any)'] = '/CursosController';
+$route['Cursos/(:any)/(:any)'] = '/CursosController/ListarTccsFiltro';
+
+$route['Projetos/(:any)'] = '/ProjetosController/indexUser';
+$route['ProjetosListar/(:any)/(:any)'] = '/ProjetosController/Listar';
+$route['ProjetosListar/(:any)'] = '/ProjetosController/Listar';
+$route['Projeto/(:any)'] = 'ProjetosController/Detalhes';
