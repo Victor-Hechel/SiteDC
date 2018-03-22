@@ -24,7 +24,7 @@
 						<?php
 							}
 						?>
-						<h4><?php echo $dados->coordenador;?></h4>
+						<h4><?php echo $dados->coordenador["nome"];?></h4>
 					</div>
 				</div>
 

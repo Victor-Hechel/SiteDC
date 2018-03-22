@@ -15,16 +15,16 @@
 						<label for="coordenador">Coordenador</label>
 						<?php
 
-							echo form_dropdown('coordenador', $dados['professores'], $dados['coordenador'], "class='form-control'");
+							echo form_dropdown('coordenador', $dados['professores'], $dados['coordenador']['id'], "class='form-control'");
 						?>
 					</div>
 
 					<div class="form-group">
 						<label for="tipo">Tipo</label>
-						<select class="form-control" id="tipo" name="tipo" value=<?php echo $dados['tipo']; ?>>
-							<option value="pesquisa">Pesquisa</option>
-							<option value="extensao">Extensão</option>
-							<option value="ensino">Ensino</option>
+						<select class="form-control" id="tipo" name="tipo" >
+							<option value="pesquisa" <?php if($dados['tipo'] == "pesquisa") echo("selected"); ?>>Pesquisa</option>
+							<option value="extensao" <?php if($dados['tipo'] == "extensao") echo("selected"); ?>>Extensão</option>
+							<option value="ensino" <?php if($dados['tipo'] == "pesquisa") echo("ensino"); ?>>Ensino</option>
 						</select>
 					</div>
 

@@ -47,6 +47,7 @@ $route['(?i)admin/Projetos/cadastrar'] = '/ProjetosController/Cadastrar';
 $route['(?i)admin/Projetos/Excluir/(:any)'] = '/ProjetosController/Excluir';
 
 $route['(?i)admin/Projetos/Listar'] = '/ProjetosController/Listar';
+$route['(?i)admin/Projetos/ListarDatatable'] = '/ProjetosController/ListarDatatable';
 $route['(?i)admin/Projetos/editar/(:any)'] = '/ProjetosController/Cadastrar';
 
 

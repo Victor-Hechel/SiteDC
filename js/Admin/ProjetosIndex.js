@@ -31,7 +31,7 @@ function ListarProjetos(){
 
 	$("#table").DataTable({
 		"ajax" : {
-			url: "/Admin/Projetos/Listar",
+			url: "/Admin/Projetos/ListarDatatable",
 			"dataSrc": ""
 		},
 		"columns": [

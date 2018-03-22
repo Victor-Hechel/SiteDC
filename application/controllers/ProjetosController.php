@@ -126,6 +126,10 @@ class ProjetosController extends MasterController {
 		echo json_encode($projetos);
 	}
 
+	public function ListarDatatable(){
+		echo json_encode($this->Projetos->Listar());
+	}
+
 	public function Excluir(){
 		$id = $this->uri->segment(4);
 		$this->Projetos->Excluir($id);

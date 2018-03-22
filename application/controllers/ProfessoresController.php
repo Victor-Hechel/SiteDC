@@ -58,6 +58,7 @@ class ProfessoresController extends MasterController {
 									"foto"
 									), $this->input->post());
 
+
 			if(isset($_FILES['foto']) && $_FILES['foto']['size'] > 0){
 				$dados['foto'] = $this->AddImagem();
 			}

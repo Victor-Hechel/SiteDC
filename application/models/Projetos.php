@@ -131,7 +131,7 @@ class Projetos extends CI_Model{
 			}
 
 			if($value->coordenador == $value->siape){
-				$value->coordenador = $value->nome;
+				$value->coordenador = ["id" => $value->siape, "nome" => $value->nome];
 			}
 		}
 		$data[0]->aluno = $bolsistasArr;
