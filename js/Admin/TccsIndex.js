@@ -14,7 +14,7 @@ $(document).on("click", ".remover", function(){
 function ExcluirTcc(id, row){
 	$.ajax({
 		method: 'post',
-		url: '/Admin/Projetos/Excluir/' + id,
+		url: '/Admin/Tccs/Excluir/' + id,
 		success: function(){
 			$("#table").DataTable().row(row).remove().draw();
 			$("#message").html("<div class='alert alert-success'>TCC Excluído com sucesso</div>");

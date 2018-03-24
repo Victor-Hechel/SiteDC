@@ -108,8 +108,9 @@ class TccsController extends MasterController {
 
 	public function Excluir(){
 		$id = $this->uri->segment(4);
+		$file = $this->Tccs->carregarTcc($id)->file;
 		$this->Tccs->Excluir($id);
-		unlink('./tccs/'.$id.".pdf");
+		unlink('./tccs/'.$file);
 		redirect('/admin/Tccs');
 	}
 
