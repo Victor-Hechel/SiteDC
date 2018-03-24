@@ -83,7 +83,7 @@
 				                        		<?php echo $tcc->titulo; ?>
 				                        	</a>
 				                        </h4>
-				                        <p>Autor: <?php echo $tcc->autor; ?></p>
+				                        <p>Autor(a): <?php echo $tcc->autor; ?></p>
 				                        <p>Orientador(a): <?php echo $tcc->orientador; ?></p>
 				                        <p>Palavras Chave: <?php echo $tcc->palavraschave; ?></p>
 				                       	<p>Ano: <?php echo $tcc->ano;?></p>
