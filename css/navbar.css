@@ -8,3 +8,7 @@ nav{
 nav a{
 	color: white;
 }
+
+.navbar-brand:hover{
+	color: white;
+}

@@ -11,3 +11,30 @@
 body{
 	background-color: LightGray;
 }
+
+#mainPanel .panel-heading{
+	border-bottom: 0.1px solid lightgray;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+#mainContainer{
+	margin-left: 3%;
+	width: 94%;
+}
+
+.panel-footer{
+	font-size: 12px;
+}
+
+.DC{
+	font-weight: bold;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.creditos{
+	margin-top: 2%;
+}

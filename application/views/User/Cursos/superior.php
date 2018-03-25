@@ -17,11 +17,11 @@
 				    <span class="caret"></span>
 				  </a>
 				  <ul class="nav nav-pills nav-stacked" role="tablist" id = "drop">
-				  	<li>
-						<a class="nav-item" id="nav-normas-tab" data-toggle="tab" href="#nav-normas" role="tab" aria-controls="nav-normas" aria-selected="false">Normas</a>
+				  	<li class='dropdown-item'>
+						<a class="nav-item" id="nav-normas-tab" data-toggle="tab" href="#nav-normas" role="tab" aria-controls="nav-normas" aria-selected="false">Documento</a>
 					</li>
-					<li>
-						<a class="nav-item" id="nav-trabalhos-tab" data-toggle="tab" href="#nav-trabalhos" role="tab" aria-controls="nav-trabalhos" aria-selected="false">Trabalhos</a>
+					<li class="dropdown-item">
+						<a class="nav-item dropdown-item" id="nav-trabalhos-tab" data-toggle="tab" href="#nav-trabalhos" role="tab" aria-controls="nav-trabalhos" aria-selected="false">Trabalhos</a>
 					</li>
 				  </ul>
 				</li>
@@ -31,7 +31,7 @@
 	</div>
 
 	<div class="col-sm-9">
-		<div class="panel panel-default tab-content">
+		<div class="panel panel-default tab-content" id="mainPanel">
 
 			<div class="tab-pane active" id="nav-descricao" role="tabpanel" aria-labelledby="nav-descricao-tab">
 				<div class="panel-heading">
@@ -47,13 +47,13 @@
 					<h2 class="text-center">Grade Curricular</h2>
 				</div>
 				<div class="panel-body">
-					<p>Inserir Grade Curricular</p>
+					<img src="/images/gradeTads.png" class="img-responsive">
 				</div>
 			</div>
 
 			<div class="tab-pane" id="nav-normas" role="tabpanel" aria-labelledby="nav-normas-tab">
 				<div class="panel-heading">
-					<h2 class="text-center">Normas</h2>
+					<h2 class="text-center">Documentos</h2>
 				</div>
 				<div class="panel-body">
 					<p>Inserir Normas de TCC</p>
@@ -116,7 +116,11 @@
 
 	$(".nav").on("click", "li", function(){
 		if($(this).children().first().attr("id") != "dropdown"){
-			$(".active").removeClass("active");
+			if(!($(this).hasClass("dropdown-item"))){
+				$(".active").removeClass("active");
+				$("#drop").slideUp("fast");
+
+			}
 			$(this).children().first().tab('show');
 		}
 	});
@@ -124,7 +128,7 @@
 	$(document).on("keyup", "#pesquisa", function(){
 		var filtro = $(this).val();
 		$.ajax({
-			url: "/Cursos/superior/"+filtro,
+			url: "/CursosListar/superior/"+filtro,
 			data: filtro,
 			method: "GET",
 			dataType: "JSON",
