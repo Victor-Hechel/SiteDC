@@ -67,7 +67,6 @@
 				<div class="panel-body">
 					<div class='row'>
 						<div class="col-sm-12">
-							<hr>
 							<input type="text" id="pesquisa" placeholder="Pesquisar..." class="form-control">
 							<hr>
 						</div>
@@ -102,6 +101,11 @@
 	#drop{
 		display: none;
 	}
+
+	input{
+		margin-top: 1%;
+		margin-bottom: 1%;
+	}
 </style>
 
 
@@ -116,10 +120,10 @@
 
 	$(".nav").on("click", "li", function(){
 		if($(this).children().first().attr("id") != "dropdown"){
-			if(!($(this).hasClass("dropdown-item"))){
+			if(!($(this).hasClass("dropdown-item")) && !($(this).hasClass("navbarDropdownOption"))){
 				$(".active").removeClass("active");
+				console.log($(this));
 				$("#drop").slideUp("fast");
-
 			}
 			$(this).children().first().tab('show');
 		}

@@ -65,6 +65,6 @@ $route['CursosListar/(:any)'] = '/CursosController/ListarTccsFiltro';
 $route['CursosListar/(:any)/(:any)'] = '/CursosController/ListarTccsFiltro';
 
 $route['Projetos/(:any)'] = '/ProjetosController/indexUser';
-$route['Projeto/(:any)'] = 'ProjetosController/Detalhes';
+$route['ProjetoDetalhes/(:any)'] = 'ProjetosController/Detalhes';
 $route['ProjetosListar/(:any)/(:any)'] = '/ProjetosController/Listar';
 $route['ProjetosListar/(:any)'] = '/ProjetosController/Listar';

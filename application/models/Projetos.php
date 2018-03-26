@@ -109,21 +109,33 @@ class Projetos extends CI_Model{
 	}
 
 	public function getProjeto($id){
-		$this->db->select("projetos.id, projetos.titulo, professores.*, projetos.tipo, 
+		/*$this->db->select("projetos.id, projetos.titulo, professores.*, projetos.tipo, 
 						   projetos.coordenador, projetos.descricao, projeto_bolsista.aluno,
 						   projeto_professor.idprofessor");
 		$this->db->from("projetos");
 		$this->db->join("professores", "professores.siape = projetos.coordenador");
 		$this->db->join("projeto_bolsista", "projeto_bolsista.idprojeto = projetos.id");
 		$this->db->join("projeto_professor", "projeto_professor.idprojeto = projetos.id", "left");
-		$this->db->where('projetos.id', $id);
-		$data = $this->db->get()->result();
-		
+		$this->db->where('projetos.id', $id);*/
+
+		$sql = "SELECT projetos.id, projetos.titulo, professores.*, projetos.tipo,
+       projetos.coordenador, projetos.descricao, projeto_bolsista.aluno,
+       projeto_professor.idprofessor, a.nome AS equipe FROM projetos JOIN professores ON (professores.siape = projetos.coordenador)
+						   JOIN projeto_bolsista ON (projeto_bolsista.idprojeto = projetos.id)
+						   LEFT JOIN projeto_professor ON (projeto_professor.idprojeto = projetos.id)
+						   LEFT JOIN (SELECT projeto_professor.idprofessor, professores.nome FROM projeto_professor
+							       JOIN professores ON (projeto_professor.idprofessor = professores.siape)) a ON (a.idprofessor = projeto_professor.idprofessor) WHERE projetos.id = $id";
+
+
+		//$data = $this->db->get()->result();
+		$data = $this->db->query($sql)->result();
 		$bolsistasArr = array();
 		$professoresArr = array();
+		$professoresNomeArr = array();
 		foreach ($data as $value) {
 			if(!in_array($value->idprofessor, $professoresArr)){
 				$professoresArr[] = $value->idprofessor;
+				$professoresNomeArr[] = $value->equipe;
 			}
 
 			if(!in_array($value->aluno, $bolsistasArr)){
@@ -136,6 +148,7 @@ class Projetos extends CI_Model{
 		}
 		$data[0]->aluno = $bolsistasArr;
 		$data[0]->idprofessor = $professoresArr;
+		$data[0]->nome = $professoresNomeArr;
 
 		return $data[0];
 	}

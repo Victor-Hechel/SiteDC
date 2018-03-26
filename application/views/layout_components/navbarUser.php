@@ -6,7 +6,7 @@
 	    <ul class="nav navbar-nav navbar-right">
 	      <li class="active"><a href="/Noticias">Notícias</a></li>
 	      <li><a href="/Professores">Professores</a></li>
-	      <li class="dropdown">
+	      <li class="dropdown navbarDropdownOption">
 	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cursos
 	        <span class="caret"></span></a>
 	        <ul class="dropdown-menu">
@@ -14,7 +14,7 @@
 	          <li><a href="/Cursos/superior">Superior</a></li>
 	        </ul>
 	      </li>
-	      <li class="dropdown">
+	      <li class="dropdown navbarDropdownOption">
 	      	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Projetos
 	      	<span class="caret"></span></a>
 	      	<ul class="dropdown-menu">

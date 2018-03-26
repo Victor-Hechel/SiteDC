@@ -6,7 +6,7 @@
 			<div class="panel-heading">
 				<h4 class="text-center">Projetos</h4>
 			</div>
-			<ul class="nav nav-pills nav-stacked" role="tablist">
+			<ul class="nav nav-pills nav-stacked tabMenu" role="tablist">
 				<li data-item = "pesquisa" <?php echo ($tipoProjeto == "pesquisa" ? "class='active'" : ""); ?>>
 					<a class="nav-item" id="nav-pesquisa-tab" href="#nav-pesquisa">Pesquisa</a>
 				</li>
@@ -42,7 +42,7 @@
 							<?php foreach ($dados as $projeto): ?>
 								<li class="list-group-item">
 			                        <h4>
-			                        	<a href="/Projetos/<?php echo $projeto->id; ?>">
+			                        	<a href="/ProjetoDetalhes/<?php echo $projeto->id; ?>">
 			                        		<?php echo $projeto->titulo; ?>
 			                        	</a>
 			                        </h4>
@@ -69,7 +69,7 @@
 
 	$(document).on("keyup", "#pesquisa", ListarProjetos);
 
-	$(document).on("click", "li", function(){
+	$(document).on("click", ".tabMenu li", function(){
 		$("#tipoProjeto").val($(this).attr("data-item"));
 		tipoProjeto = $(this).attr("data-item");
 		$("ul .active").removeClass("active");
@@ -90,7 +90,7 @@
 				for(var i = 0; i < projetos.length; i++){
 					var string = '<li class="list-group-item"> \
 	                        <h4>\
-	                        	<a target="_blank" href="/Projeto/' + projetos[i].id + '">'+projetos[i].titulo+'</a>\
+	                        	<a target="_blank" href="/ProjetoDetalhes/' + projetos[i].id + '">'+projetos[i].titulo+'</a>\
 	                        </h4>\
 	                        <p>Orientador(a): ' + projetos[i].nome + '</p></li>';
 					$("#projetos").append(string);
