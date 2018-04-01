@@ -95,7 +95,10 @@ class NoticiasController extends MasterController {
 			redirect('/admin/noticias');
 		}
 
-		$id = $this->uri->segment(4);
+		if($this->input->post('id') != null)
+			$id = $this->input->post('id');
+		else
+			$id = $this->uri->segment(4);
 
 		if($id !== null){
 			$noticia = $this->Noticias->getNoticia($id);

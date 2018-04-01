@@ -19,7 +19,7 @@
 				 			<?php
 				 				if($professor->foto != null){
 				 			?>
-				 				<img src="/uploads/<?php echo $professor->foto; ?>" class='img-circle'>
+				 				<img src="/uploads/<?php echo $professor->foto; ?>" class='img-circle img-responsive'>
 				 			<?php
 				 				}else{
 				 			?>

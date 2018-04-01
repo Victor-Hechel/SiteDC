@@ -1,10 +1,13 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<span class="panel-title">Cadastrar Notícia</span>
+			<div class="panel-heading text-center">
+				<h3>Notícias</h3>
 			</div>
 			<div class="panel-body">
+				<?php
+					$this->load->view("/Admin/form_validation.php");
+				?>
 				<form method="post" action="/admin/Noticias/atualizarInfo" enctype="multipart/form-data">
 					<input type="hidden" name="id" value="<?php echo $dados['id'];?>">
 

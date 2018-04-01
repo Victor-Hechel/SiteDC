@@ -42,10 +42,12 @@ class ProjetosController extends MasterController {
 	}
 
 	public function Cadastrar(){
-		$this->form_validation->set_rules("titulo", "Título", "trim|required");
+		$this->form_validation->set_rules("titulo", "Título", "trim|required|max_length[100]");
 		$this->form_validation->set_rules('coordenador', 'Coordenador', 'required');
 		$this->form_validation->set_rules('tipo', 'Tipo', 'required');
+		$this->form_validation->set_rules('bolsista[]', 'Bolsista', 'required');
 		$this->form_validation->set_rules('descricao', 'Descricao', 'trim|max_length[500]');
+
 
 		if ($this->form_validation->run()) {
 			$id = $this->input->post('id');
@@ -59,9 +61,12 @@ class ProjetosController extends MasterController {
 			redirect('/admin/projetos');
 		}
 
-		$id = $this->uri->segment(4);
+		if($this->input->post('id') != null)
+			$id = $this->input->post('id');
+		else
+			$id = $this->uri->segment(4);
 
-		if($id !== null){
+		if($id != null){
 			$projeto = $this->Projetos->getProjeto($id);
 			$info = array('id' => $projeto->id,
 				 		  'titulo' => $projeto->titulo,
@@ -70,15 +75,14 @@ class ProjetosController extends MasterController {
 				  		  'tipo' => $projeto->tipo,
 				  		  'bolsistas' => $projeto->aluno,
 				  		  'equipe' => $projeto->idprofessor);
-			
 		}else{
 			$info = array('id' => null,
-				 		  'titulo' => null,
-				  		  'descricao' => null,
-				  		  'coordenador' => null,
-				  		  'tipo' => null,
-				  		  'bolsistas' => array(),
-				  		  'equipe' => array());
+		 		  'titulo' => null,
+		  		  'descricao' => null,
+		  		  'coordenador' => null,
+		  		  'tipo' => null,
+		  		  'bolsistas' => array(),
+		  		  'equipe' => array());
 		}
 
 		$professores = $this->Professores->Listar();

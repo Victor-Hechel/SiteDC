@@ -8,7 +8,7 @@ CREATE TABLE Professores (siape INTEGER PRIMARY KEY,
 
 CREATE TABLE Noticias (id SERIAL PRIMARY KEY,
 				       titulo VARCHAR(60) NOT NULL,
-				       descricao VARCHAR(500) NOT NULL,
+				       descricao VARCHAR(5000) NOT NULL,
 				       dataHoraPublicacao TIMESTAMP DEFAULT NOW(),
 				       dataHoraAtualizacao TIMESTAMP DEFAULT NOW(),
 				       foto VARCHAR(40));
@@ -32,7 +32,7 @@ CREATE TYPE TIPO_PROJETO AS ENUM ('ensino', 'extensao', 'pesquisa');
 CREATE TABLE Projetos (id SERIAL PRIMARY KEY,
 				       titulo VARCHAR(100) NOT NULL,
 				       coordenador INTEGER REFERENCES Professores(siape),
-				       descricao VARCHAR(500),
+				       descricao VARCHAR(5000),
 				       tipo TIPO_PROJETO NOT NULL);
 
 CREATE TABLE Projeto_Professor (idProfessor INTEGER REFERENCES Professores(siape) ON DELETE CASCADE,

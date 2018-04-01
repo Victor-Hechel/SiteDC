@@ -12,7 +12,7 @@
 
 						?>
 
-							<div class="alert alert-danger">
+							<div class="alert alert-danger row text-center">
 								<?php
 									echo $this->session->flashdata('erro');
 								?>
@@ -31,7 +31,7 @@
 							<input type="password" name="senha" id="senha" class="form-control">
 						</div>
 						<div class="form-group row">
-							<input type="submit" value="Logar">
+							<input class="btn btn-default full-width" type="submit" value="Logar">
 						</div>
 					</form>
 				</div>
@@ -39,3 +39,4 @@
 		</div>
 	</div>
 </div>
+

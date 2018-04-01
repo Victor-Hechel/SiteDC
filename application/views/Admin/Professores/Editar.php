@@ -1,10 +1,13 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<div class="panel panel-default">
-			<div class="panel-heading">
-				<span class="panel-title">Cadastrar Professor</span>
+			<div class="panel-heading text-center">
+				<h3>Professores</h3>
 			</div>
 			<div class="panel-body">
+				<?php
+					$this->load->view("/Admin/form_validation.php");
+				?>
 				<form method="post" action="/admin/Professores/cadastrar" enctype="multipart/form-data">
 				<?php
 					echo form_hidden('siapeOld', $dados['siape']);
@@ -14,11 +17,20 @@
 					<div class="form-group">
 						<label for="siape">Siape</label>
 						<?php
+						if(isset($dados['siape']))
 							echo form_input(array(
 											'name' => 'siape',
 											'id' => 'siape',
 											'class' => 'form-control',
-											'value' => $dados['siape']
+											'value' => $dados['siape'],
+											'readonly' => 'readonly'
+											));
+						else
+							echo form_input(array(
+											'name' => 'siape',
+											'id' => 'siape',
+											'class' => 'form-control',
+											'value' => $dados['siape'],
 											));
 						?>
 					</div>

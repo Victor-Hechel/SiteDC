@@ -40,12 +40,15 @@ class ProfessoresController extends MasterController {
 	}
 
 	public function AtualizarInfo(){
+		$siapeOld = $this->input->post('siapeOld');
+		if ($siapeOld !== '') 
+			$this->form_validation->set_rules('siape', 'Siape', "trim|required");
+		else
+			$this->form_validation->set_rules('siape', 'Siape', "trim|required|is_unique[professores.siape]");
 
-		$this->form_validation->set_rules('siape', 'Siape', "trim|required");
 		$this->form_validation->set_rules('nome', 'Nome', "trim|required|max_length[50]");
 
 		if($this->form_validation->run() == true){
-			$siapeOld = $this->input->post('siapeOld');
 			$fotoOld = $this->input->post('fotoOld');
 			$fotoPrincipal = $this->input->post('foto');
 
@@ -77,8 +80,10 @@ class ProfessoresController extends MasterController {
 			$this->session->set_flashdata('sucesso', 'Notícias atualizadas com sucesso');
 			redirect('/admin/professores');
 		}
-
-		$id = $this->uri->segment(4);
+		if($this->input->post('siapeOld') != null)
+			$id = $this->input->post('siapeOld');
+		else
+			$id = $this->uri->segment(4);
 
 		if($id !== null){
 			$professor = $this->Professores->getProfessor($id);

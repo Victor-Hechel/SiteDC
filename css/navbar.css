@@ -13,3 +13,7 @@ nav a{
 .navbar-brand:hover{
 	color: white;
 }
+
+.navbar .glyphicon{
+	right: 20%;
+}

@@ -10,10 +10,12 @@ class Tccs extends CI_Model{
 		}
 
 		if($filtro != null){
+			$this->db->group_start();
 			$this->db->like("LOWER(tccs.titulo)", strtolower($filtro));
 			$this->db->or_like("LOWER(professores.nome)", strtolower($filtro));
 			$this->db->or_like("LOWER(tccs.palavraschave)", strtolower($filtro));
 			$this->db->or_like("LOWER(tccs.autor)", strtolower($filtro));
+			$this->db->group_end();
 		}
 
 		$this->db->order_by('tccs.ano', 'DESC');

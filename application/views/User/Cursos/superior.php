@@ -143,7 +143,7 @@
 	                        <h4>\
 	                        	<a target="_blank" href="/tccs/' + tccs[i].file + '">'+tccs[i].titulo+'</a>\
 	                        </h4>\
-	                        <p>Autor: ' + tccs[i].autor + '</p>'+
+	                        <p>Autor(a): ' + tccs[i].autor + '</p>'+
 	                        '<p>Orientador(a): ' + tccs[i].orientador + '</p>\
 	                        <p>Palavras Chave: ' + tccs[i].palavraschave +'</p>\
 	                       	<p>Ano: ' + tccs[i].ano+'</p></li>';

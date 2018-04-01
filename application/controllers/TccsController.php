@@ -30,8 +30,12 @@ class TccsController extends MasterController {
 		$this->form_validation->set_rules('titulo', 'Titulo', 'required|trim|max_length[50]');
 		$this->form_validation->set_rules('autor', 'Autor', 'required|trim|max_length[50]');
 		$this->form_validation->set_rules('palavraschave', 'Palavras Chave', 'required|trim|max_length[30]');
-		$this->form_validation->set_rules('ano', 'Ano', 'trim|required');
+		$this->form_validation->set_rules('ano', 'Ano', 'trim|required|numeric');
 		$this->form_validation->set_rules('curso', 'Curso', 'trim|required');
+
+		if($this->input->post('id') == null){
+			$this->form_validation->set_rules("tcc", "Tcc", "callback_file_check");
+		}
 
 
 		if($this->form_validation->run() == true){
@@ -43,29 +47,33 @@ class TccsController extends MasterController {
 			$tccPrincipal = $this->input->post('tcc');
 			$tccOld = $this->input->post('tccOld');
 
-			if(isset($_FILES['tcc']) && $_FILES['tcc']['size'] > 0){
+			if(isset($_FILES['tcc'])){
 				$info['file'] = $this->realizaUpload();
-			}
-			if (!isset($info['file']) || $info['file'] == null) {
-				$info['file'] = $this->input->post('tccOld');
-			}elseif ($tccOld !== "") {
-				$this->RemoveOldTcc($tccOld);
-			}
-
-
-			if ($id != '') {
-				$this->Tccs->Atualizar($id, $info);
+				if($info['file'] != "error" && $tccOld != "")
+					$this->RemoveOldTcc($tccOld);
 			}else{
-				$id = $this->Tccs->Cadastrar($info);
+				$info['file'] = $this->input->post('tccOld');
 			}
 
+			if($info['file'] != "error"){
+				if ($id != '') {
+				$this->Tccs->Atualizar($id, $info);
+				}else{
+					$id = $this->Tccs->Cadastrar($info);
+				}
+			}
+			
 			redirect('/admin/Tccs');
+				
 		}
 
-		$id = $this->uri->segment(4);
+		if($this->input->post('id') != null)
+			$id = $this->input->post('id');
+		else
+			$id = $this->uri->segment(4);
 		$info = array();
 
-		if ($id != '') {
+		if ($id != null) {
 			$tcc = $this->Tccs->carregarTcc($id);
 			$info['id'] = $tcc->id;
 			$info['titulo'] = $tcc->titulo;
@@ -106,6 +114,15 @@ class TccsController extends MasterController {
 
 	}
 
+	public function file_check(){
+		if($_FILES['tcc']['size'] > 0){
+			return true;
+		}else{
+			$this->form_validation->set_message('file_check', "O envio do Tcc é obrigatório");
+			return false;
+		}
+	}
+
 	public function Excluir(){
 		$id = $this->uri->segment(4);
 		$file = $this->Tccs->carregarTcc($id)->file;
@@ -126,7 +143,7 @@ class TccsController extends MasterController {
         	return $data['file_name'];
         }else{
         	echo $this->upload->display_errors();
-        	return null;
+        	return "error";
         }
 	}
 

@@ -38,3 +38,11 @@ body{
 .creditos{
 	margin-top: 2%;
 }
+
+.full-width{
+	width: 100%;
+}
+
+td .btn{
+	margin-right: 2%;
+}
