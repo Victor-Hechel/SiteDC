@@ -9,7 +9,7 @@
                 if(sizeof($dados) != 0){
               ?>
                   <li class="list-group-item">        
-                    <h1 class="media-heading"><?php echo $dados[0]->titulo; ?></h1>
+                    <h1 class="media-heading"><a class="titulo" href="/Noticia/<?php echo $dados[0]->id; ?>"><?php echo $dados[0]->titulo; ?></a></h1>
                     <p>Data: <i><?php echo $dados[0]->datahorapublicacao; ?></i></p>
                     <p>
                         <?php 
@@ -18,7 +18,7 @@
                             if(strlen($dados[0]->descricao) > 20){
                                 echo "...";
                         ?>
-                            <a href=""> Saiba mais</a>
+                            <a href="/Noticia/<?php echo $dados[0]->id; ?>"> Saiba mais</a>
                         <?php
                             }
 
@@ -27,7 +27,7 @@
                     <?php
                         if ($dados[0]->foto != null) {
                     ?>
-                            <a href="#">
+                            <a href="/Noticia/<?php echo $dados[0]->id; ?>">
                               <img class="img-responsive" src="/uploads/<?php echo $dados[0]->foto; ?>" alt="...">
                             </a>
                     <?php
@@ -37,7 +37,7 @@
                   ?>
 
                       <li class="list-group-item">
-                            <h4><?php echo $dados[$i]->titulo; ?></h4>
+                            <h4><a class="titulo" href="/Noticia/<?php echo $dados[$i]->id; ?>"><?php echo $dados[$i]->titulo; ?></a></h4>
                             <p>Data: <i><?php echo $dados[$i]->datahorapublicacao; ?></i></p>
                             <p>
                                 <?php 
@@ -46,7 +46,7 @@
                                     if(strlen($dados[$i]->descricao) > 10){
                                         echo "...";
                                 ?>
-                                    <a href="">Saiba mais</a>
+                                    <a href="/Noticia/<?php echo $dados[$i]->id; ?>">Saiba mais</a>
                                 <?php
                                     }
 
@@ -97,3 +97,12 @@
         </div>
     </div>
 </div>
+
+<style type="text/css">
+    .titulo, .titulo:hover, .titulo:focus {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+</style>

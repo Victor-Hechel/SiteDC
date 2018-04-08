@@ -1749,14 +1749,14 @@
 		 * sZeroRecords - assuming that is given.
 		 */
 		if ( ! lang.sEmptyTable && zeroRecords &&
-			defaults.sEmptyTable === "No data available in table" )
+			defaults.sEmptyTable === "Nenhum registro encontrado" )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
 		}
 	
 		/* Likewise with loading records */
 		if ( ! lang.sLoadingRecords && zeroRecords &&
-			defaults.sLoadingRecords === "Loading..." )
+			defaults.sLoadingRecords === "Carregando..." )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sLoadingRecords' );
 		}
@@ -11235,7 +11235,7 @@
 				 * sorted ascending by activing the column (click or return when focused).
 				 * Note that the column header is prefixed to this string.
 				 *  @type string
-				 *  @default : activate to sort column ascending
+				 *  @default : Ordenar colunas de forma ascendente
 				 *
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.aria.sortAscending
@@ -11251,14 +11251,14 @@
 				 *      } );
 				 *    } );
 				 */
-				"sSortAscending": ": activate to sort column ascending",
+				"sSortAscending": ": Ordenar colunas de forma ascendente",
 	
 				/**
 				 * ARIA label that is added to the table headers when the column may be
 				 * sorted descending by activing the column (click or return when focused).
 				 * Note that the column header is prefixed to this string.
 				 *  @type string
-				 *  @default : activate to sort column ascending
+				 *  @default : Ordenar colunas de forma ascendente
 				 *
 				 *  @dtopt Language
 				 *  @name DataTable.defaults.language.aria.sortDescending
@@ -11274,7 +11274,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sSortDescending": ": activate to sort column descending"
+				"sSortDescending": ": Ordenar colunas de forma descendente"
 			},
 	
 			/**
@@ -11304,7 +11304,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sFirst": "First",
+				"sFirst": "Primeiro",
 	
 	
 				/**
@@ -11327,7 +11327,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sLast": "Last",
+				"sLast": "Último",
 	
 	
 				/**
@@ -11350,7 +11350,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sNext": "Next",
+				"sNext": "Próximo",
 	
 	
 				/**
@@ -11373,7 +11373,7 @@
 				 *      } );
 				 *    } );
 				 */
-				"sPrevious": "Previous"
+				"sPrevious": "Anterior"
 			},
 	
 			/**
@@ -11382,7 +11382,7 @@
 			 * parameter - if it is not given, the value of `zeroRecords` will be used
 			 * instead (either the default or given value).
 			 *  @type string
-			 *  @default No data available in table
+			 *  @default Nenhum registro encontrado
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.emptyTable
@@ -11391,12 +11391,12 @@
 			 *    $(document).ready( function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
-			 *          "emptyTable": "No data available in table"
+			 *          "emptyTable": "Nenhum registro encontrado"
 			 *        }
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "Nenhum registro encontrado",
 	
 	
 			/**
@@ -11414,7 +11414,7 @@
 			 * * `\_PAGES\_` - Total number of pages of data in the table
 			 *
 			 *  @type string
-			 *  @default Showing _START_ to _END_ of _TOTAL_ entries
+			 *  @default Mostrando de _START_ até _END_ de _TOTAL_ registros
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.info
@@ -11428,14 +11428,14 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
 	
 	
 			/**
 			 * Display information string for when the table is empty. Typically the
 			 * format of this string should match `info`.
 			 *  @type string
-			 *  @default Showing 0 to 0 of 0 entries
+			 *  @default Mostrando 0 até 0 de 0 registros
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.infoEmpty
@@ -11449,7 +11449,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
 	
 	
 			/**
@@ -11457,7 +11457,7 @@
 			 * to the information (`info`) to give an idea of how strong the filtering
 			 * is. The variable _MAX_ is dynamically updated.
 			 *  @type string
-			 *  @default (filtered from _MAX_ total entries)
+			 *  @default (Filtrados de _MAX_ registros)
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.infoFiltered
@@ -11471,7 +11471,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
+			"sInfoFiltered": "(Filtrados de _MAX_ registros)",
 	
 	
 			/**
@@ -11548,7 +11548,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sThousands": ",",
+			"sThousands": ".",
 	
 	
 			/**
@@ -11557,7 +11557,7 @@
 			 * with a default select list of 10, 25, 50 and 100, and can be replaced
 			 * with a custom select box if required.
 			 *  @type string
-			 *  @default Show _MENU_ entries
+			 *  @default _MENU_ resultados por página
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.lengthMenu
@@ -11589,7 +11589,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			"sLengthMenu": "_MENU_ resultados por página",
 	
 	
 			/**
@@ -11599,7 +11599,7 @@
 			 * parameter is not used when loading data by server-side processing, just
 			 * Ajax sourced data with client-side processing.
 			 *  @type string
-			 *  @default Loading...
+			 *  @default Carregando...
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.loadingRecords
@@ -11608,19 +11608,19 @@
 			 *    $(document).ready( function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
-			 *          "loadingRecords": "Please wait - loading..."
+			 *          "loadingRecords": "Please wait - Carregando..."
 			 *        }
 			 *      } );
 			 *    } );
 			 */
-			"sLoadingRecords": "Loading...",
+			"sLoadingRecords": "Carregando...",
 	
 	
 			/**
 			 * Text which is displayed when the table is processing a user action
 			 * (usually a sort command or similar).
 			 *  @type string
-			 *  @default Processing...
+			 *  @default Processando...
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.processing
@@ -11634,7 +11634,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sProcessing": "Processing...",
+			"sProcessing": "Processando...",
 	
 	
 			/**
@@ -11669,7 +11669,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "Pesquisar",
 	
 	
 			/**
@@ -11713,7 +11713,7 @@
 			 * displayed after filtering. `emptyTable` is shown when there is simply no
 			 * information in the table at all (regardless of filtering).
 			 *  @type string
-			 *  @default No matching records found
+			 *  @default Nenhum registro encontrado
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.zeroRecords
@@ -11727,7 +11727,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "Nenhum registro encontrado"
 		},
 	
 	

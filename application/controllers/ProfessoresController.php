@@ -61,15 +61,22 @@ class ProfessoresController extends MasterController {
 									"foto"
 									), $this->input->post());
 
+			if($this->input->post("trocarFoto") == "t"){
+				$this->RemoveOldImage($fotoOld);
+				$fotoOld = "";
+			}
+
 
 			if(isset($_FILES['foto']) && $_FILES['foto']['size'] > 0){
 				$dados['foto'] = $this->AddImagem();
 			}
 			if (!isset($dados['foto']) || $dados['foto'] == null) {
-				$dados['foto'] = $this->input->post('fotoOld');
+				$dados['foto'] = $fotoOld;
 			}elseif ($fotoOld !== "") {
 				$this->RemoveOldImage($fotoOld);
 			}
+
+
 
 			if ($siapeOld !== '') {
 				$this->Professores->Editar($dados, $siapeOld);

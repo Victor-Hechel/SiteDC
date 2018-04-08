@@ -84,7 +84,7 @@
 						?>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group changeable">
 
 					<?php
 						if ($dados['foto'] != null) {
@@ -102,6 +102,8 @@
 														 'class' => 'form-control'
 														));
 									?>
+									<br>
+										<button id="remove" class="btn btn-warning form-control">Remover foto antiga</button>
 								</div>
 																 
 					<?php
@@ -118,7 +120,7 @@
 					</div>
 
 					<input type="hidden" name="fotoOld" value="<?php echo $dados['foto']; ?>">
-
+					<input type="hidden" name="trocarFoto" id="trocarFoto">
 
 					<div class="form-group">
 						<input type="submit" value="Cadastrar" class="form-control">
@@ -128,3 +130,16 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).on("click", "#remove", function(e){
+		if(!confirm("Você tem certeza que deseja remover a imagem?"))
+			e.preventDefault();
+		else{
+			$("#trocarFoto").val("t");
+			var item = $("#foto").clone();
+			$(".changeable").html('<label class="foto">Foto</label>');
+			$(".changeable").append(item);
+		}
+	});
+</script>

@@ -81,7 +81,7 @@
 							echo form_dropdown('curso', $options, $dados['curso'], $select);
 						?>
 					</div>
-						
+					
 					<div class="form-group"> 
 						<label for="tcc">TCC</label>										 
 						<?php
@@ -94,6 +94,16 @@
 						
 						?>
 					</div>
+
+					<?php
+						if($dados['tccOld'] != null){
+					?>
+						<div class="form-group">
+							<a class="btn btn-info form-control" target="_blank" href="/tccs/<?php echo $dados['tccOld'];?>">Arquivo de TCC atual</a>
+						</div>
+					<?php
+						}
+					?>	
 
 					<input type="hidden" name="tccOld" value="<?php echo $dados['tccOld'];?>">
 
